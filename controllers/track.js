@@ -14,6 +14,7 @@ exports.getTracks = (req, res, next) => {
 
 exports.getTrack = (req, res, next) => {
     const trackId = req.params.trackId;
+
     Track.findAll({
         'where': {
             'id': trackId
@@ -36,6 +37,7 @@ exports.getTrack = (req, res, next) => {
 
 exports.addTrack = (req, res, next) => {
     const trackName = req.body.name;
+
     Track.create({
         name: trackName
     })
@@ -46,6 +48,25 @@ exports.addTrack = (req, res, next) => {
             res.json(track);
         })
         .catch((err) => {
+            if(!err.statusCode)
+                err.statusCode = 500;
+            next(err);
+        })
+}
+
+exports.deleteTrack = (req, res, next) => {
+    const trackId = req.params.trackId;
+
+    Track.destroy({
+        where: {
+            id: trackId
+        }
+    })
+        .then( () => {
+            res.json();
+        })
+        .catch( err => {
+            console.log(err);
             if(!err.statusCode)
                 err.statusCode = 500;
             next(err);

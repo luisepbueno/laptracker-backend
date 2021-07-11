@@ -60,7 +60,7 @@ sequelize
     //.sync({alter: true})
     //.sync({force: true})
     .then((result) => {
-        app.listen(8000);
+        app.listen(8000, '0.0.0.0'); // TODO: listen to IPv6 address
     })
     .catch((err) => {
         console.log(err);
