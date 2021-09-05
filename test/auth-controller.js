@@ -71,7 +71,7 @@ describe('Authorization controller', () => {
 
         sinon.stub(bcrypt, 'compare').returns(Promise.resolve(true));
 
-        res = { send: () => {} }
+        res = { send: () => {} };
         authController.login(req, res, () => {})
             .then( (result) => {
                 expect(result).to.have.property('id', 1);
