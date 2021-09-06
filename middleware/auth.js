@@ -5,7 +5,6 @@ const AUTH_KEY = process.env.AUTH_KEY;
 module.exports = (req, res, next) => {
     const authHeader = req.get('Authorization');
     if (!authHeader) {
-        console.log('No Authorization header in request');
         const error = new Error('User not logged.');
         error.statusCode = 401;
         throw error;

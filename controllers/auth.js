@@ -11,11 +11,11 @@ exports.signUp = (req, res, next) => {
         return res.status(422).json({errors: errors.array()});
     }
 
-    const email = req.body.email;
+    const email = req.body.email.trim();
     const password = req.body.password;
 
     // create user
-    bcrypt.hash(password, 12)
+    return bcrypt.hash(password, 12)
         .then( (hashedPassword) => {
             return User.create({
                 email: email,
