@@ -17,7 +17,6 @@ app.use(express.json())
 app.use(bodyParser.json());
 
 app.use((req,res,next) => {
-    console.log('Received request with method ' + req.method);
     next();
 });
 
@@ -47,7 +46,6 @@ app.use((req,res) => {
 
 // error handling
 app.use((error, req, res, next) => {
-    console.log(error);
     const status = error.statusCode || 500;
     const message = error.message;
     const data = error.data;
@@ -65,3 +63,5 @@ sequelize
     .catch((err) => {
         console.log(err);
     })
+
+module.exports = app;
