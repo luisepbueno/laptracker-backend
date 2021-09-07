@@ -10,7 +10,8 @@ chai.use(chaiHttp);
 
 describe('Authorization controller - Signup', () => {
 
-    afterEach(function() {
+    afterEach(async function() {
+        await User.destroy({where: {email: 'test@test.com'}});
         sinon.restore();
     });
 
