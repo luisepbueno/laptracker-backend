@@ -2,6 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
+
 const sequelize = require('./utils/database');
 
 const isAuth = require('./middleware/auth');
