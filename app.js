@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const cors = require('cors');
 
 if (process.env.NODE_ENV !== 'production') {
@@ -18,7 +17,7 @@ const app = express();
 app.use(express.json())
 
 // parse JSON data
-app.use(bodyParser.json());
+app.use(express.json());
 
 app.use((req,res,next) => {
     next();
