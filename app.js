@@ -16,6 +16,8 @@ const app = express();
 
 app.use(express.json())
 
+app.use(cors());
+
 // parse JSON data
 app.use(express.json());
 
@@ -25,16 +27,9 @@ app.use((req,res,next) => {
 
 // set headers
 app.use((req,res,next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Accept', 'application/json');
-    if (req.method == 'OPTIONS') { // TODO - improve CORS preflight handling
-        res.sendStatus(204);
-    } else {
-        next();
-    }
+    next();
 });
 
 // routes
